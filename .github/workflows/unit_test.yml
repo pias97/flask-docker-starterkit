@@ -12,6 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Install Docker Compose
+        run: |
+            sudo apt-get update
+            sudo apt-get install docker-compose
+
       - name: Generate required .env file
         run: |
           echo DEBUG=True >> .env
@@ -22,4 +27,4 @@ jobs:
         run: docker-compose build
 
       - name: Run tests
-        run: docker-compose up test-container
+        run: docker-compose up test-runner
